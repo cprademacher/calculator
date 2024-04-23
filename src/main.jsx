@@ -1,8 +1,13 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
-import "./tailwind.css";
+import "./index.css";
 import Home from "./pages/Home.jsx";
+import Why from "./pages/Why.jsx";
+import Contact from "./pages/Contact.jsx";
+import Resume from "./pages/Resume.jsx";
+import How from "./pages/How.jsx";
+import Calculator from "./pages/Calculator.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +18,26 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "/why",
+        element: <Why />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/resume",
+        element: <Resume />,
+      },
+      {
+        path: "/how",
+        element: <How />,
+      },
+      {
+        path: "/calculator",
+        element: <Calculator />,
       },
     ],
   },
