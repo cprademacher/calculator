@@ -1,13 +1,41 @@
 import { useState } from "react";
 
 export default function Calculator() {
-  const [number, setNumber] = useState(0);
+  const [firstNumber, setFirstNumber] = useState(null);
+  const [secondNumber, setSecondNumber] = useState(null);
+  const [mathAction, setMathAction] = useState("");
+  const [answer, setAnswer] = useState(null);
+
+  const clearCalculator = () => {
+    setAnswer(null);
+    setFirstNumber(null);
+    setSecondNumber(null);
+    setMathAction("");
+  };
+
+  const calculate = () => {
+    if (mathAction === "+") {
+      setAnswer(firstNumber + secondNumber);
+    } else if (mathAction === "-") {
+      setAnswer(firstNumber - secondNumber);
+    } else if (mathAction === "*") {
+      setAnswer(firstNumber * secondNumber);
+    } else if (mathAction === "/") {
+      setAnswer(firstNumber / secondNumber);
+    }
+  };
 
   return (
     <section className="d-flex w-auto min-vh-100 justify-content-center align-items-center">
       <div className="card" style={{ width: "18rem", height: "450px" }}>
         <section className="d-flex justify-content-center align-items-center w-auto h-25 border-bottom bg-info">
-          <h2>{number}</h2>
+          <h2>
+            {answer
+              ? answer
+              : `${firstNumber ? firstNumber : ""} ${mathAction} ${
+                  secondNumber ? secondNumber : ""
+                }`}
+          </h2>
         </section>
 
         <section className="bg-primary w-auto h-75 p-2">
@@ -15,7 +43,7 @@ export default function Calculator() {
             <button
               type="button"
               className="btn btn-secondary w-100 my-2"
-              onClick={() => setNumber(0)}
+              onClick={clearCalculator}
             >
               Clear
             </button>
@@ -25,7 +53,11 @@ export default function Calculator() {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => setNumber(1)}
+                  onClick={
+                    mathAction === ""
+                      ? () => setFirstNumber(1)
+                      : () => setSecondNumber(1)
+                  }
                 >
                   1
                 </button>
@@ -34,7 +66,11 @@ export default function Calculator() {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => setNumber(2)}
+                  onClick={
+                    mathAction === ""
+                      ? () => setFirstNumber(2)
+                      : () => setSecondNumber(2)
+                  }
                 >
                   2
                 </button>
@@ -43,13 +79,21 @@ export default function Calculator() {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => setNumber(3)}
+                  onClick={
+                    mathAction === ""
+                      ? () => setFirstNumber(3)
+                      : () => setSecondNumber(3)
+                  }
                 >
                   3
                 </button>
               </div>
               <div className="col">
-                <button type="button" className="btn btn-secondary">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setMathAction("+")}
+                >
                   +
                 </button>
               </div>
@@ -60,7 +104,11 @@ export default function Calculator() {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => setNumber(4)}
+                  onClick={
+                    mathAction === ""
+                      ? () => setFirstNumber(4)
+                      : () => setSecondNumber(4)
+                  }
                 >
                   4
                 </button>
@@ -69,7 +117,11 @@ export default function Calculator() {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => setNumber(5)}
+                  onClick={
+                    mathAction === ""
+                      ? () => setFirstNumber(5)
+                      : () => setSecondNumber(5)
+                  }
                 >
                   5
                 </button>
@@ -78,13 +130,21 @@ export default function Calculator() {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => setNumber(6)}
+                  onClick={
+                    mathAction === ""
+                      ? () => setFirstNumber(6)
+                      : () => setSecondNumber(6)
+                  }
                 >
                   6
                 </button>
               </div>
               <div className="col">
-                <button type="button" className="btn btn-secondary">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setMathAction("-")}
+                >
                   -
                 </button>
               </div>
@@ -95,7 +155,11 @@ export default function Calculator() {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => setNumber(7)}
+                  onClick={
+                    mathAction === ""
+                      ? () => setFirstNumber(7)
+                      : () => setSecondNumber(7)
+                  }
                 >
                   7
                 </button>
@@ -104,7 +168,11 @@ export default function Calculator() {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => setNumber(8)}
+                  onClick={
+                    mathAction === ""
+                      ? () => setFirstNumber(8)
+                      : () => setSecondNumber(8)
+                  }
                 >
                   8
                 </button>
@@ -113,13 +181,21 @@ export default function Calculator() {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => setNumber(9)}
+                  onClick={
+                    mathAction === ""
+                      ? () => setFirstNumber(9)
+                      : () => setSecondNumber(9)
+                  }
                 >
                   9
                 </button>
               </div>
               <div className="col">
-                <button type="button" className="btn btn-secondary">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setMathAction("*")}
+                >
                   *
                 </button>
               </div>
@@ -131,20 +207,32 @@ export default function Calculator() {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={() => setNumber(0)}
+                  onClick={
+                    mathAction === ""
+                      ? () => setFirstNumber(0)
+                      : () => setSecondNumber(0)
+                  }
                 >
                   0
                 </button>
               </div>
               <div className="col"></div>
               <div className="col">
-                <button type="button" className="btn btn-secondary">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setMathAction("/")}
+                >
                   /
                 </button>
               </div>
             </div>
 
-            <button type="button" className="btn btn-secondary w-100 my-2">
+            <button
+              type="button"
+              className="btn btn-secondary w-100 my-2"
+              onClick={calculate}
+            >
               Enter
             </button>
           </div>
@@ -152,49 +240,4 @@ export default function Calculator() {
       </div>
     </section>
   );
-}
-
-{
-  /* <button type="button" className="btn btn-secondary">
-            1
-          </button>
-          <button type="button" className="btn btn-secondary">
-            2
-          </button>
-          <button type="button" className="btn btn-secondary">
-            3
-          </button>
-          <button type="button" className="btn btn-secondary">
-            4
-          </button>
-          <button type="button" className="btn btn-secondary">
-            5
-          </button>
-          <button type="button" className="btn btn-secondary">
-            6
-          </button>
-          <button type="button" className="btn btn-secondary">
-            7
-          </button>
-          <button type="button" className="btn btn-secondary">
-            8
-          </button>
-          <button type="button" className="btn btn-secondary">
-            9
-          </button>
-          <button type="button" className="btn btn-secondary">
-            0
-          </button>
-          <button type="button" className="btn btn-secondary">
-            +
-          </button>
-          <button type="button" className="btn btn-secondary">
-            -
-          </button>
-          <button type="button" className="btn btn-secondary">
-            *
-          </button>
-          <button type="button" className="btn btn-secondary">
-            /
-          </button> */
 }
